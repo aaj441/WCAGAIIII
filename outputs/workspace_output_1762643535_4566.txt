@@ -1,0 +1,73 @@
+🚀 WCAGAI v4.0 Enhanced Scan Started
+📊 Discovery Mode: fintech, banking in fintech
+Cache read failed: The client is closed
+Searching for: fintech banking fintech banking platform 2025 digital financial services
+Discovery error for fintech: TypeError: Cannot read properties of undefined (reading 'organic_results')
+    at VerticalDiscovery.processSearchResults (/workspace/discovery.js:110:28)
+    at VerticalDiscovery.discover (/workspace/discovery.js:71:38)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async WCAGAIV4Scanner.scanWithDiscovery (/workspace/scanner-v4-integration.js:62:33)
+    at async WCAGAIV4Scanner.scan (/workspace/scanner-v4-integration.js:42:24)
+    at async main (/workspace/scanner-v4-integration.js:278:25)
+✅ Discovered 5 sites
+🔍 Scanning: stripe.com
+🔍 Scanning: paypal.com
+🔍 Scanning: coinbase.com
+🔍 Scanning: robinhood.com
+🔍 Scanning: klarna.com
+
+📊 Scan Results Summary:
+{
+  "vertical": "fintech",
+  "totalSites": 5,
+  "successfulScans": 5,
+  "averageCompliance": 26,
+  "averageComplianceScore": 0.2639259084706326,
+  "totalViolations": 71,
+  "criticalViolations": 12,
+  "complianceDistribution": {
+    "excellent": 0,
+    "good": 0,
+    "fair": 0,
+    "poor": 5
+  },
+  "topIssues": [
+    {
+      "category": "Keyboard Navigation",
+      "count": 26,
+      "severity": "high"
+    },
+    {
+      "category": "Focus Visibility",
+      "count": 12,
+      "severity": "high"
+    },
+    {
+      "category": "Chart Alt Text",
+      "count": 3,
+      "severity": "medium"
+    }
+  ],
+  "roiEstimate": {
+    "potentialImprovement": 74,
+    "estimatedRevenueImpact": "€66247",
+    "complianceDeadline": "2025-06-28"
+  }
+}
+ClientClosedError: The client is closed
+    at RedisSocket.quit (/workspace/node_modules/@redis/client/dist/lib/client/socket.js:70:19)
+    at Commander.QUIT (/workspace/node_modules/@redis/client/dist/lib/client/index.js:260:71)
+    at VerticalDiscovery.disconnect (/workspace/discovery.js:220:30)
+    at WCAGAIV4Scanner.disconnect (/workspace/scanner-v4-integration.js:255:30)
+    at main (/workspace/scanner-v4-integration.js:286:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+/workspace/node_modules/google-search-results-nodejs/lib/SerpApiSearch.js:89
+          throw e
+          ^
+{
+  "error": "Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key"
+}
+(Use `node --trace-uncaught ...` to show where the exception was thrown)
+
+Node.js v20.19.5

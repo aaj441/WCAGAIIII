@@ -1,0 +1,15 @@
+[
+  'SerpApiSearch',
+  'GoogleSearch',
+  'BaiduSearch',
+  'BingSearch',
+  'DuckDuckGoSearch',
+  'YahooSearch',
+  'YandexSearch',
+  'YoutubeSearch',
+  'EbaySearch',
+  'WalmartSearch',
+  'HomeDepotSearch',
+  'NaverSearch',
+  'AppleAppStoreSearch'
+]

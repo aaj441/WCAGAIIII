@@ -1,0 +1,27 @@
+{
+  "name": "wcagai-v4-discovery",
+  "version": "4.0.0",
+  "description": "WCAGAI v4.0 Vertical Discovery System",
+  "main": "discovery.js",
+  "scripts": {
+    "test": "node test-discovery.js",
+    "install-deps": "npm install google-search-results-nodejs redis",
+    "start": "node discovery-example.js"
+  },
+  "dependencies": {
+    "google-search-results-nodejs": "^2.1.0",
+    "redis": "^4.7.1"
+  },
+  "devDependencies": {
+    "axios": "^1.6.0"
+  },
+  "keywords": [
+    "wcag",
+    "accessibility",
+    "discovery",
+    "fintech",
+    "healthcare"
+  ],
+  "author": "WCAGAI Team",
+  "license": "MIT"
+}

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WCAGAI v4.0 Pricing - Compliance Intelligence Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .price-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .price-card:hover {
+            transform: translateY(-8px);
+        }
+        .popular-badge {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+        .revenue-metric {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="bg-indigo-600 p-2 rounded-lg">
+                        <i class="fas fa-universal-access text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900">WCAGAI v4.0</h1>
+                        <p class="text-sm text-gray-500">Compliance Intelligence Platform</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-600 hover:text-gray-900 transition-colors">
+                        <i class="fas fa-chart-line mr-2"></i>Dashboard
+                    </a>
+                    <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
+                        Sign In
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-indigo-600 to-purple-700 text-white py-20">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-8">
+                <span class="bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-sm font-semibold">
+                    <i class="fas fa-fire mr-2"></i>EAA Deadline: June 28, 2025
+                </span>
+            </div>
+            <h2 class="text-5xl font-bold mb-6">
+                Turn Compliance into <span class="text-yellow-300">Competitive Advantage</span>
+            </h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto opacity-90">
+                From €50,000 fines to €90 return on every €1 invested. 
+                WCAGAI v4.0 transforms regulatory burden into recurring revenue.
+            </p>
+            <div class="flex items-center justify-center space-x-8">
+                <div class="text-center">
+                    <div class="text-3xl font-bold">98%</div>
+                    <div class="text-sm opacity-75">AI Fix Margin</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold">0.33</div>
+                    <div class="text-sm opacity-75">Month CAC Payback</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold">71:1</div>
+                    <div class="text-sm opacity-75">LTV:CAC Ratio</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Cards -->
+    <section class="py-16">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">
+                    Choose Your Compliance Intelligence Plan
+                </h3>
+                <p class="text-lg text-gray-600">
+                    Every plan includes WCAG 2.2 AA compliance scanning and detailed violation reports
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Developer Plan -->
+                <div class="price-card bg-white rounded-2xl shadow-xl p-8 border border-gray-200">
+                    <div class="mb-8">
+                        <h4 class="text-2xl font-bold text-gray-900 mb-2">Developer</h4>
+                        <p class="text-gray-600 mb-6">Perfect for individual developers and small agencies</p>
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-5xl font-bold">$49</span>
+                            <span class="text-gray-500 ml-2">/month</span>
+                        </div>
+                        <div class="text-sm text-gray-500 mb-6">
+                            <i class="fas fa-rocket mr-2"></i>Start scanning in minutes
+                        </div>
+                    </div>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span class="text-gray-700">1,000 scans per month</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span class="text-gray-700">Basic CSV reports</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span class="text-gray-700">CI/CD integration</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span class="text-gray-700">Email support</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-times text-gray-400 mr-3"></i>
+                            <span>Vertical discovery</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-times text-gray-400 mr-3"></i>
+                            <span>AI remediation</span>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-times text-gray-400 mr-3"></i>
+                            <span>Legal risk scoring</span>
+                        </li>
+                    </ul>
+
+                    <button class="w-full bg-gray-900 text-white py-3 rounded-lg hover:bg-gray-800 transition-colors font-semibold"
+                            onclick="selectPlan('developer')">
+                        Start Free Trial
+                    </button>
+                </div>
+
+                <!-- Compliance Plan (Most Popular) -->
+                <div class="price-card bg-white rounded-2xl shadow-2xl p-8 border-2 border-indigo-500 relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span class="popular-badge bg-indigo-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                            <i class="fas fa-star mr-2"></i>Most Popular
+                        </span>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h4 class="text-2xl font-bold text-gray-900 mb-2">Compliance</h4>
+                        <p class="text-gray-600 mb-6">Enterprise-grade compliance intelligence</p>
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-5xl font-bold">$299</span>
+                            <span class="text-gray-500 ml-2">/month</span>
+                        </div>
+                        <div class="text-sm text-green-600 mb-6 font-semibold">
+                            <i class="fas fa-shield-alt mr-2"></i>EAA Deadline Ready
+                        </div>
+                    </div>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span class="text-gray-700">10,000 scans per month</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span class="text-gray-700"><strong>Vertical discovery</strong> (5 industries)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span class="text-gray-700"><strong>500 AI fixes</strong> included</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span class="text-gray-700">Legal risk scoring</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span class="text-gray-700">PDF audit reports</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span class="text-gray-700">6-month audit trail</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span class="text-gray-700">Priority support</span>
+                        </li>
+                    </ul>
+
+                    <button class="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-colors font-semibold"
+                            onclick="selectPlan('compliance')">
+                        Start Free Trial
+                    </button>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="price-card bg-white rounded-2xl shadow-xl p-8 border border-gray-200">
+                    <div class="mb-8">
+                        <h4 class="text-2xl font-bold text-gray-900 mb-2">Enterprise</h4>
+                        <p class="text-gray-600 mb-6">Unlimited compliance for large organizations</p>
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-5xl font-bold">$999</span>
+                            <span class="text-gray-500 ml-2">/month</span>
+                        </div>
+                        <div class="text-sm text-purple-600 mb-6 font-semibold">
+                            <i class="fas fa-crown mr-2"></i>Full Platform Access
+                        </div>
+                    </div>
+
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span class="text-gray-700"><strong>Unlimited scans</strong></span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span class="text-gray-700">All verticals + custom training</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span class="text-gray-700"><strong>Unlimited AI fixes</strong></span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span class="text-gray-700">SOC2 audit trails</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span class="text-gray-700">White-label reports</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span class="text-gray-700">Full API access</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span class="text-gray-700">Dedicated onboarding</span>
+                        </li>
+                    </ul>
+
+                    <button class="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition-colors font-semibold"
+                            onclick="selectPlan('enterprise')">
+                        Contact Sales
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Credits Section -->
+    <section class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold mb-4">
+                    AI Remediation Credits
+                </h3>
+                <p class="text-lg text-gray-400 mb-8">
+                    Fix accessibility violations automatically with 98% margin AI solutions
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <div class="bg-gray-800 rounded-lg p-6 text-center">
+                    <h5 class="text-xl font-bold mb-2">Starter Pack</h5>
+                    <div class="text-3xl font-bold mb-4">100 credits</div>
+                    <div class="text-2xl font-bold text-green-400 mb-6">$49</div>
+                    <button class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors w-full"
+                            onclick="purchaseCredits('starter')">
+                        Buy Credits
+                    </button>
+                </div>
+                
+                <div class="bg-gray-800 rounded-lg p-6 text-center border-2 border-green-500">
+                    <div class="bg-green-500 text-gray-900 px-3 py-1 rounded-full text-sm font-semibold mb-4 inline-block">
+                        Best Value
+                    </div>
+                    <h5 class="text-xl font-bold mb-2">Pro Pack</h5>
+                    <div class="text-3xl font-bold mb-4">1,000 credits</div>
+                    <div class="text-2xl font-bold text-green-400 mb-6">$399</div>
+                    <div class="text-sm text-gray-400 mb-4">Save 20% vs individual</div>
+                    <button class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors w-full"
+                            onclick="purchaseCredits('pro')">
+                        Buy Credits
+                    </button>
+                </div>
+                
+                <div class="bg-gray-800 rounded-lg p-6 text-center">
+                    <h5 class="text-xl font-bold mb-2">Enterprise Pack</h5>
+                    <div class="text-3xl font-bold mb-4">10,000 credits</div>
+                    <div class="text-2xl font-bold text-green-400 mb-6">$2,999</div>
+                    <div class="text-sm text-gray-400 mb-4">Save 40% vs individual</div>
+                    <button class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors w-full"
+                            onclick="purchaseCredits('enterprise')">
+                        Buy Credits
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Revenue Calculator -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">
+                    Revenue Impact Calculator
+                </h3>
+                <p class="text-lg text-gray-600">
+                    See how much WCAGAI v4.0 can save you in legal costs and generate in revenue
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto bg-gray-50 rounded-2xl p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Number of websites to audit
+                        </label>
+                        <input type="number" id="websiteCount" value="10" min="1" max="1000"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                               onchange="calculateROI()">
+                        
+                        <label class="block text-sm font-medium text-gray-700 mb-2 mt-4">
+                            Average violations per site
+                        </label>
+                        <input type="number" id="violationCount" value="25" min="1" max="100"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                               onchange="calculateROI()">
+                        
+                        <label class="block text-sm font-medium text-gray-700 mb-2 mt-4">
+                            Industry vertical
+                        </label>
+                        <select id="vertical" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+                                onchange="calculateROI()">
+                            <option value="healthcare">Healthcare</option>
+                            <option value="fintech">Fintech</option>
+                            <option value="ecommerce">E-commerce</option>
+                        </select>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-lg p-6 text-white">
+                        <h4 class="text-xl font-bold mb-4">Your Revenue Impact</h4>
+                        
+                        <div class="space-y-4">
+                            <div class="flex justify-between">
+                                <span>Legal Risk Avoidance:</span>
+                                <span class="font-bold" id="legalSavings">$0</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>AI Fix Costs:</span>
+                                <span class="font-bold" id="aiCosts">$0</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Compliance Revenue:</span>
+                                <span class="font-bold" id="complianceRevenue">$0</span>
+                            </div>
+                            <div class="border-t border-white/30 pt-4 flex justify-between">
+                                <span class="text-lg">Net Impact:</span>
+                                <span class="text-2xl font-bold text-green-300" id="netImpact">$0</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 bg-white/20 rounded-lg p-4">
+                            <div class="text-sm mb-2">ROI Calculation:</div>
+                            <div class="text-2xl font-bold" id="roiRatio">0:1</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-indigo-600 text-white py-16">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-3xl font-bold mb-4">
+                Ready to Turn Compliance into Revenue?
+            </h3>
+            <p class="text-xl mb-8 opacity-90">
+                Join 500+ companies using WCAGAI v4.0 for compliance intelligence
+            </p>
+            <div class="flex items-center justify-center space-x-4">
+                <button class="bg-white text-indigo-600 px-8 py-3 rounded-lg hover:bg-gray-100 transition-colors font-semibold"
+                        onclick="selectPlan('compliance')">
+                    Start Free Trial
+                </button>
+                <button class="bg-indigo-800 text-white px-8 py-3 rounded-lg hover:bg-indigo-900 transition-colors font-semibold">
+                    Schedule Demo
+                </button>
+            </div>
+            
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+                <div class="text-center">
+                    <div class="text-4xl font-bold mb-2">500+</div>
+                    <div class="text-sm opacity-75">Companies Trust WCAGAI</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold mb-2">$5.3M</div>
+                    <div class="text-sm opacity-75">Annual Revenue Generated</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold mb-2">98%</div>
+                    <div class="text-sm opacity-75">Customer Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Initialize Stripe (would use real key in production)
+        const stripe = Stripe('pk_test_demo_key');
+
+        // Plan selection
+        function selectPlan(plan) {
+            console.log('Selected plan:', plan);
+            
+            // Show upgrade modal or redirect to checkout
+            const planDetails = {
+                developer: { price: 49, name: 'Developer Plan' },
+                compliance: { price: 299, name: 'Compliance Plan' },
+                enterprise: { price: 999, name: 'Enterprise Plan' }
+            };
+            
+            const details = planDetails[plan];
+            
+            if (plan === 'enterprise') {
+                alert(`🎯 ${details.name}: $${details.price}/month\n\nOur enterprise team will contact you within 24 hours to discuss:\n• Custom vertical training\n• Dedicated onboarding\n• SLA guarantees\n• Volume discounts`);
+            } else {
+                // In production, create Stripe checkout session
+                alert(`🚀 Starting ${details.name} trial:\n\n✅ $${details.price}/month after 14-day trial\n✅ Full access to all features\n✅ Cancel anytime\n✅ 24/7 support\n\nRedirecting to secure checkout...`);
+            }
+        }
+
+        // Credit purchase
+        function purchaseCredits(packageType) {
+            const packages = {
+                starter: { credits: 100, price: 49 },
+                pro: { credits: 1000, price: 399 },
+                enterprise: { credits: 10000, price: 2999 }
+            };
+            
+            const pkg = packages[packageType];
+            alert(`💰 Purchasing ${pkg.credits} AI Credits:\n\n• Cost: $${pkg.price}\n• Valid for 12 months\n• 98% accuracy guarantee\n• Refund if unsatisfied\n\nProceeding to secure payment...`);
+        }
+
+        // ROI Calculator
+        function calculateROI() {
+            const websites = parseInt(document.getElementById('websiteCount').value) || 10;
+            const violations = parseInt(document.getElementById('violationCount').value) || 25;
+            const vertical = document.getElementById('vertical').value;
+            
+            // Calculate costs and savings
+            const legalRiskPerViolation = vertical === 'fintech' ? 2000 : 1500; // Fintech has higher risk
+            const legalSavings = websites * violations * legalRiskPerViolation;
+            
+            const aiFixCosts = websites * violations * 0.50; // $0.50 per AI fix
+            const compliancePlanCost = websites > 5 ? 299 : 49; // Choose appropriate plan
+            const totalCosts = aiFixCosts + compliancePlanCost;
+            
+            // Revenue generation
+            const complianceRevenue = websites * 100; // $100 per site in value
+            const netImpact = legalSavings + complianceRevenue - totalCosts;
+            
+            // Update UI
+            document.getElementById('legalSavings').textContent = `$${legalSavings.toLocaleString()}`;
+            document.getElementById('aiCosts').textContent = `$${aiFixCosts.toLocaleString()}`;
+            document.getElementById('complianceRevenue').textContent = `$${complianceRevenue.toLocaleString()}`;
+            document.getElementById('netImpact').textContent = `$${netImpact.toLocaleString()}`;
+            
+            const roi = netImpact > 0 ? `${Math.round(netImpact / totalCosts)}:1` : 'Calculating...';
+            document.getElementById('roiRatio').textContent = roi;
+        }
+
+        // Initialize calculator
+        calculateROI();
+
+        // Add scroll animations
+        window.addEventListener('scroll', () => {
+            const cards = document.querySelectorAll('.price-card');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

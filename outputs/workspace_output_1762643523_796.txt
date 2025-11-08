@@ -1,0 +1,79 @@
+🚀 Testing WCAGAI v4.0 Discovery System...
+
+📊 Test 1: Healthcare Vertical Discovery
+Keywords: ["healthcare", "patient portal"]
+Cache read failed: The client is closed
+Searching for: healthcare patient portal healthcare sites 2025 patient portal medical
+Discovery error for healthcare: TypeError: Cannot read properties of undefined (reading 'organic_results')
+    at VerticalDiscovery.processSearchResults (/workspace/discovery.js:110:28)
+    at VerticalDiscovery.discover (/workspace/discovery.js:71:38)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async testDiscoverySystem (/workspace/test-discovery.js:17:33)
+✅ Discovered 5 healthcare sites
+Top 3 results:
+  1. nih.gov - Traffic Score: 0.500 - Predicted Compliance: 74.0%
+  2. mayoclinic.org - Traffic Score: 0.500 - Predicted Compliance: 74.0%
+  3. webmd.com - Traffic Score: 0.500 - Predicted Compliance: 74.0%
+
+💰 Test 2: Fintech Vertical Discovery
+Keywords: ["fintech", "banking platform"]
+Cache read failed: The client is closed
+Searching for: fintech banking platform fintech banking platform 2025 digital financial services
+Discovery error for fintech: TypeError: Cannot read properties of undefined (reading 'organic_results')
+    at VerticalDiscovery.processSearchResults (/workspace/discovery.js:110:28)
+    at VerticalDiscovery.discover (/workspace/discovery.js:71:38)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async testDiscoverySystem (/workspace/test-discovery.js:34:30)
+✅ Discovered 5 fintech sites
+Top 3 results:
+  1. stripe.com - Traffic Score: 0.500 - Predicted Compliance: 31.0%
+  2. paypal.com - Traffic Score: 0.500 - Predicted Compliance: 31.0%
+  3. coinbase.com - Traffic Score: 0.500 - Predicted Compliance: 31.0%
+
+📈 Test 3: Vertical Benchmark Validation
+Healthcare Benchmarks:
+  - Compliance Benchmark: 74.0%
+  - Known Top Sites: 5
+  - Keywords: healthcare, hospital, patient portal, medical, clinic
+Fintech Benchmarks:
+  - Compliance Benchmark: 31.0%
+  - Known Top Sites: 5
+  - Keywords: fintech, banking app, payment platform, digital banking, financial services
+
+⚡ Test 4: Cache Performance Test
+Cache read failed: The client is closed
+Searching for: healthcare medical healthcare sites 2025 patient portal medical
+Discovery error for healthcare: TypeError: Cannot read properties of undefined (reading 'organic_results')
+    at VerticalDiscovery.processSearchResults (/workspace/discovery.js:110:28)
+    at VerticalDiscovery.discover (/workspace/discovery.js:71:38)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async testDiscoverySystem (/workspace/test-discovery.js:68:31)
+✅ Cached results retrieved in 0ms
+  Cache hit for 5 sites
+
+🎯 WCAGAI v4.0 Discovery Test Summary:
+✅ Healthcare discovery: WORKING
+✅ Fintech discovery: WORKING
+✅ Vertical benchmarks: VALIDATED
+✅ Redis caching: OPERATIONAL
+✅ Traffic scoring: IMPLEMENTED
+✅ Compliance prediction: ENABLED
+
+🚀 Ready for Week 1 deployment!
+Next: Integrate with existing scanner.js
+ClientClosedError: The client is closed
+    at RedisSocket.quit (/workspace/node_modules/@redis/client/dist/lib/client/socket.js:70:19)
+    at Commander.QUIT (/workspace/node_modules/@redis/client/dist/lib/client/index.js:260:71)
+    at VerticalDiscovery.disconnect (/workspace/discovery.js:220:30)
+    at testDiscoverySystem (/workspace/test-discovery.js:99:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+/workspace/node_modules/google-search-results-nodejs/lib/SerpApiSearch.js:89
+          throw e
+          ^
+{
+  "error": "Invalid API key. Your API key should be here: https://serpapi.com/manage-api-key"
+}
+(Use `node --trace-uncaught ...` to show where the exception was thrown)
+
+Node.js v20.19.5

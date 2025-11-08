@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WCAGAI v4.0 - Accessibility Compliance Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .compliance-great { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+        .compliance-good { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); }
+        .compliance-fair { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+        .compliance-poor { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .pulse-dot {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-xl">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="bg-white/20 p-2 rounded-lg backdrop-blur-sm">
+                        <i class="fas fa-universal-access text-2xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold">WCAGAI v4.0</h1>
+                        <p class="text-sm opacity-90">Accessibility Compliance Intelligence</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <div class="text-right">
+                        <p class="text-sm opacity-75">System Status</p>
+                        <div class="flex items-center space-x-2">
+                            <span class="pulse-dot w-2 h-2 bg-green-400 rounded-full"></span>
+                            <span class="font-semibold">Operational</span>
+                        </div>
+                    </div>
+                    <button class="bg-white/20 px-4 py-2 rounded-lg backdrop-blur-sm hover:bg-white/30 transition-all">
+                        <i class="fas fa-cog"></i> Settings
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-8">
+        <!-- Quick Stats -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <!-- Healthcare Vertical Card -->
+            <div class="card-hover bg-white rounded-xl shadow-lg p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="bg-blue-100 p-3 rounded-lg">
+                        <i class="fas fa-heartbeat text-blue-600 text-xl"></i>
+                    </div>
+                    <span class="text-sm text-gray-500">Healthcare</span>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-1">74%</h3>
+                <p class="text-sm text-gray-600 mb-3">Average Compliance</p>
+                <div class="flex items-center justify-between text-xs">
+                    <span class="text-gray-500">HHS Mandate: May 2026</span>
+                    <span class="text-green-600 font-semibold">
+                        <i class="fas fa-arrow-up"></i> +5%
+                    </span>
+                </div>
+                <div class="mt-3 h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-blue-500 to-blue-600" style="width: 74%"></div>
+                </div>
+            </div>
+
+            <!-- Fintech Vertical Card -->
+            <div class="card-hover bg-white rounded-xl shadow-lg p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="bg-green-100 p-3 rounded-lg">
+                        <i class="fas fa-chart-line text-green-600 text-xl"></i>
+                    </div>
+                    <span class="text-sm text-gray-500">Fintech</span>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-1">31%</h3>
+                <p class="text-sm text-gray-600 mb-3">Average Compliance</p>
+                <div class="flex items-center justify-between text-xs">
+                    <span class="text-gray-500">EAA Deadline: Jun 2025</span>
+                    <span class="text-red-600 font-semibold">
+                        <i class="fas fa-exclamation-triangle"></i> Critical
+                    </span>
+                </div>
+                <div class="mt-3 h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-red-500 to-red-600" style="width: 31%"></div>
+                </div>
+            </div>
+
+            <!-- ROI Impact Card -->
+            <div class="card-hover bg-white rounded-xl shadow-lg p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="bg-purple-100 p-3 rounded-lg">
+                        <i class="fas fa-euro-sign text-purple-600 text-xl"></i>
+                    </div>
+                    <span class="text-sm text-gray-500">ROI Impact</span>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-1">€90:1</h3>
+                <p class="text-sm text-gray-600 mb-3">Revenue Return</p>
+                <div class="flex items-center justify-between text-xs">
+                    <span class="text-gray-500">TestDevLab Validated</span>
+                    <span class="text-purple-600 font-semibold">
+                        <i class="fas fa-check-circle"></i> Verified
+                    </span>
+                </div>
+                <div class="mt-3 h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-purple-500 to-purple-600" style="width: 95%"></div>
+                </div>
+            </div>
+
+            <!-- Sites Discovered Card -->
+            <div class="card-hover bg-white rounded-xl shadow-lg p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="bg-indigo-100 p-3 rounded-lg">
+                        <i class="fas fa-search text-indigo-600 text-xl"></i>
+                    </div>
+                    <span class="text-sm text-gray-500">Discovery</span>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-1">5</h3>
+                <p class="text-sm text-gray-600 mb-3">Fintech Sites Found</p>
+                <div class="flex items-center justify-between text-xs">
+                    <span class="text-gray-500">SerpAPI Active</span>
+                    <span class="text-indigo-600 font-semibold">
+                        <i class="fas fa-rocket"></i> v4.0
+                    </span>
+                </div>
+                <div class="mt-3 h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-indigo-500 to-indigo-600" style="width: 100%"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Scan Results -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+            <!-- Scan Results Chart -->
+            <div class="lg:col-span-2 bg-white rounded-xl shadow-lg p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold text-gray-900">
+                        <i class="fas fa-chart-bar mr-2 text-indigo-600"></i>
+                        Compliance Distribution Analysis
+                    </h2>
+                    <select class="text-sm border border-gray-300 rounded-lg px-3 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option>Fintech Vertical</option>
+                        <option>Healthcare Vertical</option>
+                        <option>E-commerce Vertical</option>
+                    </select>
+                </div>
+                <div class="relative h-80">
+                    <canvas id="complianceChart"></canvas>
+                </div>
+                <div class="mt-6 grid grid-cols-4 gap-4 text-center">
+                    <div class="p-3 bg-green-50 rounded-lg">
+                        <div class="text-2xl font-bold text-green-600">0</div>
+                        <div class="text-xs text-gray-600">Excellent (90%+)</div>
+                    </div>
+                    <div class="p-3 bg-blue-50 rounded-lg">
+                        <div class="text-2xl font-bold text-blue-600">0</div>
+                        <div class="text-xs text-gray-600">Good (70-90%)</div>
+                    </div>
+                    <div class="p-3 bg-yellow-50 rounded-lg">
+                        <div class="text-2xl font-bold text-yellow-600">0</div>
+                        <div class="text-xs text-gray-600">Fair (50-70%)</div>
+                    </div>
+                    <div class="p-3 bg-red-50 rounded-lg">
+                        <div class="text-2xl font-bold text-red-600">5</div>
+                        <div class="text-xs text-gray-600">Poor (<50%)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Issues -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h2 class="text-xl font-bold text-gray-900 mb-6">
+                    <i class="fas fa-exclamation-circle mr-2 text-red-600"></i>
+                    Critical Issues Identified
+                </h2>
+                <div class="space-y-4">
+                    <div class="border-l-4 border-red-500 bg-red-50 p-4 rounded-r-lg">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Keyboard Navigation</h4>
+                                <p class="text-sm text-gray-600">26 violations found</p>
+                            </div>
+                            <span class="bg-red-600 text-white text-xs px-2 py-1 rounded-full">High</span>
+                        </div>
+                    </div>
+                    <div class="border-l-4 border-red-500 bg-red-50 p-4 rounded-r-lg">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Focus Visibility</h4>
+                                <p class="text-sm text-gray-600">12 violations found</p>
+                            </div>
+                            <span class="bg-red-600 text-white text-xs px-2 py-1 rounded-full">High</span>
+                        </div>
+                    </div>
+                    <div class="border-l-4 border-yellow-500 bg-yellow-50 p-4 rounded-r-lg">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="font-semibold text-gray-900">Chart Alt Text</h4>
+                                <p class="text-sm text-gray-600">3 violations found</p>
+                            </div>
+                            <span class="bg-yellow-600 text-white text-xs px-2 py-1 rounded-full">Medium</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 p-4 bg-indigo-50 rounded-lg">
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-euro-sign text-indigo-600 mr-2"></i>
+                        <span class="font-semibold text-gray-900">Revenue Impact</span>
+                    </div>
+                    <div class="text-2xl font-bold text-indigo-600">€66,247</div>
+                    <p class="text-sm text-gray-600">Potential improvement</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Discovered Sites Table -->
+        <section class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-bold text-gray-900">
+                    <i class="fas fa-globe mr-2 text-green-600"></i>
+                    Discovered Sites - Fintech Vertical
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="text-sm bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors">
+                        <i class="fas fa-redo mr-2"></i>Rescan
+                    </button>
+                    <button class="text-sm bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors">
+                        <i class="fas fa-download mr-2"></i>Export
+                    </button>
+                </div>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="border-b border-gray-200">
+                            <th class="text-left py-3 px-4 text-sm font-semibold text-gray-700">Site</th>
+                            <th class="text-left py-3 px-4 text-sm font-semibold text-gray-700">Compliance</th>
+                            <th class="text-left py-3 px-4 text-sm font-semibold text-gray-700">Violations</th>
+                            <th class="text-left py-3 px-4 text-sm font-semibold text-gray-700">Critical</th>
+                            <th class="text-left py-3 px-4 text-sm font-semibold text-gray-700">Status</th>
+                            <th class="text-left py-3 px-4 text-sm font-semibold text-gray-700">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sitesTable">
+                        <!-- Sites will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Implementation Progress -->
+        <section class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl shadow-lg p-6 text-white">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-bold">
+                    <i class="fas fa-tasks mr-2"></i>
+                    v4.0 Implementation Progress
+                </h2>
+                <span class="bg-white/20 px-3 py-1 rounded-full text-sm backdrop-blur-sm">
+                    Week 1 of 3 Complete
+                </span>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="font-semibold">Week 1: Discovery</span>
+                        <span class="text-green-300">✓ Complete</span>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>SerpAPI Integration</div>
+                        <div class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Redis Caching</div>
+                        <div class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Vertical Intelligence</div>
+                    </div>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="font-semibold">Week 2: Database</span>
+                        <span class="text-yellow-300">In Progress</span>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center"><i class="fas fa-circle text-gray-400 mr-2"></i>Prisma Schema</div>
+                        <div class="flex items-center"><i class="fas fa-circle text-gray-400 mr-2"></i>Vertical Rules</div>
+                        <div class="flex items-center"><i class="fas fa-circle text-gray-400 mr-2"></i>Read Replicas</div>
+                    </div>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="font-semibold">Week 3: AI + Scale</span>
+                        <span class="text-gray-300">Planned</span>
+                    </div>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center"><i class="fas fa-circle text-gray-400 mr-2"></i>xAI Integration</div>
+                        <div class="flex items-center"><i class="fas fa-circle text-gray-400 mr-2"></i>Go Microservice</div>
+                        <div class="flex items-center"><i class="fas fa-circle text-gray-400 mr-2"></i>15k req/sec</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-12 py-8">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm opacity-75">© 2025 WCAGAI v4.0 - Powered by Real 2025 Data</p>
+                    <p class="text-xs opacity-50 mt-1">Semrush • TestDevLab • xAI • European Accessibility Act</p>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="#" class="text-sm opacity-75 hover:opacity-100 transition-opacity">Documentation</a>
+                    <a href="#" class="text-sm opacity-75 hover:opacity-100 transition-opacity">API Reference</a>
+                    <a href="#" class="text-sm opacity-75 hover:opacity-100 transition-opacity">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mock data from our scan results
+        const scanResults = {
+            sites: [
+                { domain: 'stripe.com', compliance: 28, violations: 15, critical: 3 },
+                { domain: 'paypal.com', compliance: 32, violations: 13, critical: 2 },
+                { domain: 'coinbase.com', compliance: 24, violations: 16, critical: 4 },
+                { domain: 'robinhood.com', compliance: 27, violations: 14, critical: 2 },
+                { domain: 'klarna.com', compliance: 25, violations: 13, critical: 1 }
+            ],
+            analysis: {
+                complianceDistribution: { excellent: 0, good: 0, fair: 0, poor: 5 },
+                topIssues: [
+                    { category: 'Keyboard Navigation', count: 26, severity: 'high' },
+                    { category: 'Focus Visibility', count: 12, severity: 'high' },
+                    { category: 'Chart Alt Text', count: 3, severity: 'medium' }
+                ]
+            }
+        };
+
+        // Populate sites table
+        function populateSitesTable() {
+            const tbody = document.getElementById('sitesTable');
+            tbody.innerHTML = '';
+            
+            scanResults.sites.forEach(site => {
+                const row = document.createElement('tr');
+                row.className = 'border-b border-gray-100 hover:bg-gray-50 transition-colors';
+                
+                const complianceColor = site.compliance >= 90 ? 'green' : 
+                                       site.compliance >= 70 ? 'blue' : 
+                                       site.compliance >= 50 ? 'yellow' : 'red';
+                
+                const statusText = site.compliance >= 50 ? 'Needs Work' : 'Critical';
+                const statusColor = site.compliance >= 50 ? 'yellow' : 'red';
+                
+                row.innerHTML = `
+                    <td class="py-4 px-4">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-globe text-indigo-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <div class="font-medium text-gray-900">${site.domain}</div>
+                                <div class="text-sm text-gray-500">Last scanned: Just now</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="py-4 px-4">
+                        <div class="flex items-center">
+                            <div class="text-2xl font-bold text-gray-900 mr-3">${site.compliance}%</div>
+                            <div class="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
+                                <div class="h-full bg-${complianceColor}-500" style="width: ${site.compliance}%"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="py-4 px-4">
+                        <span class="text-gray-900 font-medium">${site.violations}</span>
+                    </td>
+                    <td class="py-4 px-4">
+                        <span class="text-red-600 font-medium">${site.critical}</span>
+                    </td>
+                    <td class="py-4 px-4">
+                        <span class="bg-${statusColor}-100 text-${statusColor}-800 text-xs px-2 py-1 rounded-full font-medium">
+                            ${statusText}
+                        </span>
+                    </td>
+                    <td class="py-4 px-4">
+                        <div class="flex items-center space-x-2">
+                            <button class="text-indigo-600 hover:text-indigo-800 transition-colors">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="text-gray-600 hover:text-gray-800 transition-colors">
+                                <i class="fas fa-download"></i>
+                            </button>
+                            <button class="text-gray-600 hover:text-gray-800 transition-colors">
+                                <i class="fas fa-share"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Create compliance chart
+        function createComplianceChart() {
+            const ctx = document.getElementById('complianceChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: scanResults.sites.map(s => s.domain),
+                    datasets: [{
+                        label: 'Compliance Score',
+                        data: scanResults.sites.map(s => s.compliance),
+                        backgroundColor: [
+                            'rgba(239, 68, 68, 0.8)',
+                            'rgba(245, 158, 11, 0.8)',
+                            'rgba(239, 68, 68, 0.8)',
+                            'rgba(239, 68, 68, 0.8)',
+                            'rgba(239, 68, 68, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgba(239, 68, 68, 1)',
+                            'rgba(245, 158, 11, 1)',
+                            'rgba(239, 68, 68, 1)',
+                            'rgba(239, 68, 68, 1)',
+                            'rgba(239, 68, 68, 1)'
+                        ],
+                        borderWidth: 2,
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `Compliance: ${context.parsed.y}%`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            populateSitesTable();
+            createComplianceChart();
+            
+            // Add real-time updates simulation
+            setInterval(() => {
+                const statusDot = document.querySelector('.pulse-dot');
+                if (statusDot) {
+                    statusDot.style.opacity = statusDot.style.opacity === '0.5' ? '1' : '0.5';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

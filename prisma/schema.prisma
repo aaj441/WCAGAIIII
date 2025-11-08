@@ -1,0 +1,247 @@
+// WCAGAI v4.0 Database Schema
+// Optimized for revenue tracking and compliance intelligence
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Customer accounts with tiered pricing
+model Customer {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  plan      Plan     @default(DEVELOPER)
+  company   String?
+  credits   Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relationships
+  scans     Scan[]
+  purchases Purchase[]
+  reports   BenchmarkReport[]
+  
+  // Revenue tracking
+  mrr       Int      @default(0) // Monthly recurring revenue
+  ltv       Int      @default(0) // Lifetime value
+  cac       Int      @default(0) // Customer acquisition cost
+  
+  @@map("customers")
+}
+
+// Pricing tiers for revenue optimization
+enum Plan {
+  DEVELOPER   // $49/month - 1k scans
+  COMPLIANCE  // $299/month - 10k scans + AI fixes
+  ENTERPRISE  // $999/month - Unlimited scans
+}
+
+// Individual accessibility scans
+model Scan {
+  id              String   @id @default(cuid())
+  url             String
+  customerId      String
+  customer        Customer @relation(fields: [customerId], references: [id])
+  
+  // Scan results
+  complianceScore Float    // 0.0 to 1.0
+  violations      Int      @default(0)
+  criticalViolations Int   @default(0)
+  
+  // Vertical intelligence
+  vertical        String?  // healthcare, fintech, ecommerce
+  keywords        String[] // For discovery scans
+  discoveredFrom  String?  // How site was discovered
+  
+  // Monetization data
+  creditsUsed     Int      @default(0)
+  aiFixesApplied  Int      @default(0)
+  revenueGenerated Float   @default(0.0)
+  
+  // Legal risk scoring
+  adaLawsuitRisk  Float    @default(0.0) // Probability 0-1
+  eaaComplianceRisk Float  @default(0.0) // EU risk score
+  
+  // Metadata
+  scanDuration    Int      @default(0) // Milliseconds
+  createdAt       DateTime @default(now())
+  completedAt     DateTime?
+  
+  @@map("scans")
+}
+
+// AI remediation fixes (microtransactions)
+model AIFix {
+  id          String   @id @default(cuid())
+  scanId      String
+  rule        String   // WCAG rule (e.g., "1.1.1")
+  element     String   // HTML element description
+  suggestion  String   // AI-generated fix
+  cost        Float    // Price to customer
+  
+  // Processing status
+  status      FixStatus @default(PENDING)
+  applied     Boolean  @default(false)
+  approvedBy  String?  // Customer ID who approved
+  
+  // Revenue tracking
+  revenue     Float    @default(0.0)
+  margin      Float    @default(0.98) // 98% margin on AI fixes
+  
+  createdAt   DateTime @default(now())
+  appliedAt   DateTime?
+  
+  @@map("ai_fixes")
+}
+
+enum FixStatus {
+  PENDING
+  APPROVED
+  APPLIED
+  REJECTED
+}
+
+// Credit purchases and billing
+model Purchase {
+  id          String      @id @default(cuid())
+  customerId  String
+  customer    Customer    @relation(fields: [customerId], references: [id])
+  
+  // Product details
+  product     String      // "ai_credits", "benchmark_report", "subscription"
+  amount      Float       // Purchase amount
+  currency    String      @default("USD")
+  
+  // Credits/subscriptions
+  credits     Int?        // Number of credits purchased
+  plan        Plan?       // Plan upgrade
+  
+  // Payment processing
+  stripeId    String?     // Stripe payment intent ID
+  status      PaymentStatus @default(PENDING)
+  
+  // Revenue analytics
+  margin      Float       @default(0.85) // Average margin
+  cac         Float       @default(0.0)  // Acquisition cost
+  
+  createdAt   DateTime    @default(now())
+  completedAt DateTime?
+  
+  @@map("purchases")
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+// Vertical benchmark reports (high-value data products)
+model BenchmarkReport {
+  id          String   @id @default(cuid())
+  customerId  String
+  customer    Customer @relation(fields: [customerId], references: [id])
+  
+  // Report details
+  vertical    String   // healthcare, fintech, etc.
+  title       String
+  description String
+  
+  // Data included
+  sitesAnalyzed Int     @default(0)
+  avgCompliance Float
+  topIssues    Json     // Array of violation categories
+  competitiveRanking Int // Customer's position
+  
+  // Monetization
+  price       Float    // Report price ($1999-$2499)
+  revenue     Float    @default(0.0)
+  
+  // Delivery
+  pdfUrl      String?  // Generated report URL
+  status      ReportStatus @default(GENERATING)
+  
+  createdAt   DateTime @default(now())
+  completedAt DateTime?
+  
+  @@map("benchmark_reports")
+}
+
+enum ReportStatus {
+  GENERATING
+  COMPLETED
+  DELIVERED
+  EXPIRED
+}
+
+// Legal risk assessments for insurance partnerships
+model LegalRiskAssessment {
+  id          String   @id @default(cuid())
+  customerId  String
+  
+  // Risk scoring
+  adaRisk     Float    // ADA lawsuit probability
+  eaaRisk     Float    // EU compliance risk
+  settlementEstimate Float // Potential legal cost
+  
+  // Insurance integration
+  insuranceQuote     Float? // Premium estimate
+  insurancePartner   String? // "Coalition", etc.
+  commission          Float? // 20% commission
+  
+  // Compliance requirements
+  deadline            DateTime? // EAA deadline 2025-06-28
+  requiredFixes       Int      @default(0)
+  estimatedCost       Float    @default(0.0) // Cost to become compliant
+  
+  createdAt   DateTime @default(now())
+  
+  @@map("legal_risk_assessments")
+}
+
+// API usage for platform partners
+model ApiUsage {
+  id          String   @id @default(cuid())
+  customerId  String?
+  apiKey      String   @unique
+  
+  // Usage metrics
+  endpoint    String   // "ada_risk_score", "eaa_readiness", etc.
+  requests    Int      @default(0)
+  revenue     Float    @default(0.0)
+  
+  // Rate limiting
+  allowedRps  Int      @default(10) // Requests per second
+  currentRps  Float    @default(0.0)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("api_usage")
+}
+
+// Vertical benchmarks (cached for performance)
+model VerticalBenchmark {
+  id          String   @id @default(cuid())
+  vertical    String   @unique
+  avgCompliance Float
+  totalSites  Int
+  lastUpdated DateTime @default(now())
+  
+  // Market data
+  marketSize  Int      // Number of sites in vertical
+  complianceDeadline DateTime?
+  regulatoryPressure String // "HIGH", "MEDIUM", "LOW"
+  
+  // Revenue opportunities
+  avgLtv      Float    // Average customer value
+  cac         Float    // Customer acquisition cost
+  
+  @@map("vertical_benchmarks")
+}
